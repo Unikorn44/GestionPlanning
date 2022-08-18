@@ -1,8 +1,6 @@
 package fr.m2i.models;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,20 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-@Entity
+@Entity(name="User")
 @Table(name="userTable")
 @NamedQueries({
-	@NamedQuery(name="selectAllUsers", query="select element from User element"),
-	@NamedQuery(name="selectUserById", query="select element from User element where element.id = :id"),
-	@NamedQuery(name="deleteUserById", query="delete from User element where element.id = :id")
+	@NamedQuery(name="selectAllUsers",
+				query="SELECT u FROM User u"),
+	@NamedQuery(name="selectUserById",
+				query="SELECT u FROM User u WHERE u.id = :id"),
 })
 public class User {
 	
@@ -35,58 +32,48 @@ public class User {
 	private int id;
 	
 	@Basic
-	@Column(name="first_name")	
+	@Column(name="first_name")
 	private String first_name;
 	
 	@Basic
-	@Column(name="last_name")		
+	@Column(name="last_name")	
 	private String last_name;
 	
 	@Basic
-	@Column(name="city")	
+	@Column(name="city")
 	private String city;
 	
 	@Basic
-	@Column(name="birthday_date")	
+	@Column(name="birthday_date")
 	private Date birthday_date;
-	
+
 	@Basic
-	@Column(name="phone_number")	
+	@Column(name="phone_number")
 	private String phone_number;
 
 	@Basic
 	@Column(name="email")
 	private String email;
-	
-	
+
 	@Basic
-	@Column(name="login")
-	private String login;
-	
-	@Basic
-	@Column(name="password")	
-	private String password;
-	
-	@Basic
-	@Column(name="admin")	
+	@Column(name="admin")
 	private boolean admin;
-	
+
 	@Basic
-	@Column(name="picture")	
+	@Column(name="picture")
 	private String picture;
-	
-	@Basic
-	@Column(name="id_planning")	
-	private int id_planning;
-	
+
 	//Association d'un Planning à un User
 	@OneToOne
 	@JoinColumn(name="id_planning")
 	private Planning planning;
 	
-	//Association à un liste users
-	@OneToMany
-	private List<User> users = new ArrayList<>();
+	public Planning getPlanning() {
+		return planning;
+	}
+	public void setPlanning(Planning planning) {
+		this.planning = planning;
+	}
 	
 	public int getId() {
 		return id;
@@ -137,20 +124,6 @@ public class User {
 		this.email = email;
 	}
 	
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 	public boolean isAdmin() {
 		return admin;
 	}
@@ -164,14 +137,4 @@ public class User {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	
-	public int getId_planning() {
-		return id_planning;
-	}
-	public void setId_planning(int id_planning) {
-		this.id_planning = id_planning;
-	}
-
-	
-	
 }

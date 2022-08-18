@@ -51,7 +51,7 @@ public class Event {
 	
 	//Association à table multi
 	@OneToMany
-	private List<Event> events = new ArrayList<>();
+	private List<Planning_event> planningEvents = new ArrayList<>();
 	
     public int getId() {
     	return id;

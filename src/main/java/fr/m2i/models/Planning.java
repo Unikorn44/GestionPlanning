@@ -44,17 +44,9 @@ public class Planning {
 	@Column(name="modification")
 	private boolean modification;
 	
-	//Association d'un Planning à un User
-	@OneToOne
-	@JoinColumn(name="id_user")
-	private User user;
-	
-	
 	//Association à table multi
 	@OneToMany
-	private List<Planning> plannings = new ArrayList<>();
-	
-	
+	private List<Planning_event> planningEvents = new ArrayList<>();
 	
 	public int getId() {
 		return id;

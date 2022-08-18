@@ -7,7 +7,6 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 
-
 @Table(name="list_userTable")
 public class List_user {
 		
@@ -20,8 +19,5 @@ public class List_user {
 	@ManyToOne
 	@Column(name="id_second_user")
 	private User secondUser;
-	
-	
-	
 
 }
