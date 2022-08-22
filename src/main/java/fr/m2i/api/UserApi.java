@@ -23,11 +23,11 @@ public class UserApi {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getAll() {
+		
 		factory = Persistence.createEntityManagerFactory("UnityPersist");
 		em = factory.createEntityManager();
 		
-		@SuppressWarnings("unchecked")
-		List<User> users = em.createNamedQuery("selectAllUsers").getResultList();
+		List<User> users = em.createNamedQuery("selectAllUsers", User.class).getResultList();
 		
 		em.close();
 		factory.close();
@@ -35,6 +35,7 @@ public class UserApi {
 		return users;
 	}
 	
+	// Récupération des informations User pour un user
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -43,7 +44,7 @@ public class UserApi {
 		factory = Persistence.createEntityManagerFactory("UnityPersist");
 		em = factory.createEntityManager();
 		
-		Query q = em.createNamedQuery("selectUserById");
+		Query q = em.createNamedQuery("selectUserById", User.class);
 		q.setParameter("id", id);
 		@SuppressWarnings("unchecked")
 		List<User> user = q.getResultList();
@@ -54,7 +55,23 @@ public class UserApi {
 		return user;
 	}
 	
-	// POST modification user
-	// GET récupérer liste de ses copains
-	
+	// Récupération des informations User pour les contacts d'un user
+	@GET
+	@Path("/{id}/contact")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> findAllContactByUser(@PathParam("id") int id) {
+		
+		factory = Persistence.createEntityManagerFactory("UnityPersist");
+		em = factory.createEntityManager();
+		
+		Query q = em.createNamedQuery("selectContactForUser", User.class);
+		q.setParameter("id", id);
+		@SuppressWarnings("unchecked")
+		List<User> users = q.getResultList();
+		
+		factory.close();
+		
+		return users;
+	}
+		
 }

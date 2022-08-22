@@ -1,17 +1,18 @@
 package fr.m2i.models;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,6 +24,11 @@ import javax.persistence.Table;
 				query="SELECT u FROM User u"),
 	@NamedQuery(name="selectUserById",
 				query="SELECT u FROM User u WHERE u.id = :id"),
+	@NamedQuery(name="selectContactForUser",
+				query="SELECT u FROM User u "
+						+ "INNER JOIN u.listUsers l "
+						+ "INNER JOIN u.Contact c "
+						+ "WHERE c.listUser.id = :id"),
 })
 public class User {
 	
@@ -68,9 +74,16 @@ public class User {
 	@JoinColumn(name="id_planning")
 	private Planning planning;
 	
+	@OneToMany(mappedBy="user")
+	private List<List_user> listUsers;
+	
+	@OneToMany(mappedBy="user")
+	private List<Contact> Contact;
+
 	public Planning getPlanning() {
 		return planning;
 	}
+
 	public void setPlanning(Planning planning) {
 		this.planning = planning;
 	}

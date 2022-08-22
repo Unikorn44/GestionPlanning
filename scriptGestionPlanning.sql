@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS GestionPlanning;
 USE GestionPlanning;
 
 -- création des 5 tables
--- création de la table event
+-- création de la table Event_Table
 CREATE TABLE IF NOT EXISTS eventTable
 (
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -66,12 +66,22 @@ CREATE TABLE IF NOT EXISTS loginTable
 -- création de la table liste
 CREATE TABLE IF NOT EXISTS List_userTable
 (
-	id_first_user INT,
-    CONSTRAINT FK_UserFirstId FOREIGN KEY (id_first_user)
-    REFERENCES userTable(id),
-    id_second_user INT,
-    CONSTRAINT FK_UserSecondId FOREIGN KEY (id_second_user)
+	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	id_user INT UNIQUE,
+    CONSTRAINT FK_UserFirstId FOREIGN KEY (id_user)
     REFERENCES userTable(id)
+);
+
+-- création de la table contact
+CREATE TABLE IF NOT EXISTS ContactTable
+(
+	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	id_user INT,
+    CONSTRAINT FK_User FOREIGN KEY (id_user)
+    REFERENCES userTable(id),
+    id_list_user INT,
+    CONSTRAINT FK_ListUserId FOREIGN KEY (id_list_user)
+    REFERENCES List_userTable(id)
 );
 
 -- création des données pour mise en place du site
@@ -97,10 +107,20 @@ VALUES
 	('test3', '123456', 3 );
 
 -- création de 2 relations dans la table list_user
-INSERT INTO List_userTable (id_first_user, id_second_user)
+INSERT INTO List_userTable (id_user)
+ VALUES
+ (1),
+ (2),
+ (3);
+ 
+ -- création de 2 relations dans la table list_user
+INSERT INTO ContactTable (id_user, id_list_user)
  VALUES
  (1, 2),
- (2, 3);
+ (1, 3),
+ (2, 1),
+ (2, 3),
+ (3, 1);
 
 -- création de 3 events
 INSERT INTO eventTable (title, date_event, start_time, end_time, description)

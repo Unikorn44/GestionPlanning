@@ -2,7 +2,6 @@ package fr.m2i.models;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -51,7 +50,7 @@ public class Event {
 	
 	//Association à table multi
 	@OneToMany
-	private List<Planning_event> planningEvents = new ArrayList<>();
+	private List<Planning_event> planningEvents;
 	
     public int getId() {
     	return id;
