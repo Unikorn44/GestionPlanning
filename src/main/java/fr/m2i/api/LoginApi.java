@@ -31,8 +31,6 @@ public class LoginApi {
 		
 		Login loginFound = (Login) q.getSingleResult();
 		
-		System.out.print(loginFound);
-		
 		em.close();
 		factory.close();
 
