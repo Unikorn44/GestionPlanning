@@ -56,7 +56,6 @@ public class LoginApi {
 			em.close();
 			factory.close();
 			
-			
 			// Renvoie le token sur la réponse
 			return Response.ok().header(AUTHORIZATION, "Bearer " + token).build();
 		} catch (Exception e) {
