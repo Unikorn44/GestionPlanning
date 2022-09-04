@@ -33,17 +33,14 @@ public class TokenService {
 				    .build();
 		 
 			JWTClaimsSet payload = new JWTClaimsSet.Builder()
-				    //.issuer(uriInfo.getAbsolutePath().toString())
 				    .issueTime(new Date())
 				    .subject(login)
 				    .expirationTime(Date.from(Instant.now().plusSeconds(600)))
 				    .build();
 		 
-		 
 			SignedJWT signedJWT = new SignedJWT(header, payload);
 			signedJWT.sign(new ECDSASigner(this.key.toECPrivateKey()));
 			String jwtToken = signedJWT.serialize();
-			System.out.println(jwtToken);
 			return jwtToken;
 	 
 		} catch (Exception e) {
@@ -56,11 +53,8 @@ public class TokenService {
 		
 		// Vérification token
 		public Boolean isValid(String token) {
-			System.out.println(token);
 			try {
 				Boolean valid = SignedJWT.parse(token).verify(new ECDSAVerifier(this.key.toECPublicKey()));
-				System.out.println(valid);
-				System.out.println("hello");
 				return valid;
 			} catch (JOSEException e) {
 				e.printStackTrace();
