@@ -6,19 +6,25 @@
              version="2.1">
   <persistence-unit name="UnityPersist">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>fr.m2i.models.Actor</class>
-   
+    <class>fr.m2i.models.Event</class>
+    <class>fr.m2i.models.Planning</class>
+    <class>fr.m2i.models.Planning_event</class>
+    <class>fr.m2i.models.User</class>
+    <class>fr.m2i.models.List_user</class>
+    <class>fr.m2i.models.Contact</class>
+    <class>fr.m2i.models.Login</class>
+
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/exemple" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/GestionPlanning" />
       <property name="javax.persistence.jdbc.user" value="root" />
       <property name="javax.persistence.jdbc.password" value="FormationM2i" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.format_sql" value="true" />
-      
+
     </properties>
   </persistence-unit>
- 
-   
+
+
 </persistence>

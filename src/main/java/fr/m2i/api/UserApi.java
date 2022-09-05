@@ -29,10 +29,10 @@ public class UserApi {
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User findUserById(@PathParam("id") int id){
-		
+		System.out.println("je suis dans la requête");
 		factory = Persistence.createEntityManagerFactory("UnityPersist");
 		em = factory.createEntityManager();
-		
+		System.out.println("je suis dans la requête");
 		Query q = em.createNamedQuery("selectUserById", User.class);
 		q.setParameter("id", id);
 		User user = (User) q.getSingleResult();

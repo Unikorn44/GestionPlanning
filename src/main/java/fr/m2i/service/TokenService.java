@@ -24,9 +24,7 @@ public class TokenService {
 	
 	// Création d'un token au user qui se connecte
 	public String issueToken(String login) {		 
-		try { 
-			System.out.println(this.key);
-		 
+		try { 		 
 			JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.ES256)
 				    .type(JOSEObjectType.JWT)
 				    .keyID(this.key.getKeyID())
@@ -50,10 +48,10 @@ public class TokenService {
 		return null;
  }
 
-		
 		// Vérification token
 		public Boolean isValid(String token) {
 			try {
+				System.out.println("je suis dans la méthod valid");
 				Boolean valid = SignedJWT.parse(token).verify(new ECDSAVerifier(this.key.toECPublicKey()));
 				return valid;
 			} catch (JOSEException e) {
