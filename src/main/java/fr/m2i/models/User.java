@@ -69,6 +69,10 @@ public class User {
 	@Basic
 	@Column(name="picture")
 	private String picture;
+	
+	@Basic
+	@Column(name="compte_actif")
+	private boolean compte_actif;
 
 	//Association d'un Planning à un User
 	@OneToOne(cascade = CascadeType.ALL)
@@ -150,5 +154,12 @@ public class User {
 	}
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+	
+	public boolean getCompte_actif() {
+		return compte_actif;
+	}
+	public void setCompte_actif(boolean compte_actif) {
+		this.compte_actif = compte_actif;
 	}
 }

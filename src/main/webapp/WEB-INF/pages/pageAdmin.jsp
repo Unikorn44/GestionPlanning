@@ -20,13 +20,15 @@
 	<div class="listUsers">
 		<c:forEach var="user" items="${userListRecup}">
 			<div class="cadre">
-				<div class="LumièreCompteActif">
-					<p>Compte Actif</p>
-				</div>
+				
+
+				<p>user compte </p>
+				<c:out value="${user.compte_actif}"/>
+				
+				
 				<div class="présentationUser">
 					<c:out value="Nom: ${user.first_name}"/><br/>
 					<c:out value="Prénom:  ${user.last_name}"/>	
-					<c:out value="User id_planning:  ${user.planning.id}"/>	<!-- ne marche pas -->
 				</div>
 				<div class="profilePicture">
 					<img class="picture" src="smile.jpg" alt="Profile picture">
@@ -35,41 +37,16 @@
 				<div class="serieBoutonsAdmin">
 					<!-- FORM pour traitement des options -->
 					<form action="/Base/list?req=mod&id=${user.id}" method="POST">
-						
-					    <c:if test="${user.admin}">
-					        result de user.admin : is an admin						        
-					    </c:if>    
-					    <c:if test="${!user.admin}">
-					        <p>result de user.admin : not an admin</p>
-					    </c:if>
-					    <p>$$$</p>
-					    <input type="checkbox" id="adminStatus" value="adminStatus" name="adminStatus" <c:if test="${user.admin}"> checked</c:if>/>						<br/>
-						<p>$$$</p>
-						
-						<input type="button" value="Autorisation export planning" name="AutorExportPlanning"/><br/>
-						    <c:if test="${user.planning.export}">
-						        <p>Peut être exporté</p> 
-						    </c:if>    
-						    <c:if test="${!user.planning.export}">
-						        <p>Ne peut PAS être exporté</p>
-						    </c:if>
-						    
-						<input type="button" value="Autorisation accès planning par collaborateur" name="AutorAccesPlanningParExt"/><br/>
-							<c:if test="${user.planning.acces}">
-						        <p>Accès libre</p> 
-						    </c:if>    
-						    <c:if test="${!user.planning.acces}">
-						        <p>Accès refusé</p>
-						    </c:if>
-						
-						<input type="button" value="Autorisation modification planning par collaborateur" name="AutorModifPlanningParCollab"/>
-							<c:if test="${user.planning.modification}">
-						        <p>Modifications autorisées</p> 
-						    </c:if>    
-						    <c:if test="${!user.planning.modification}">
-						        <p>Modifications interdites</p>
-						    </c:if>
-						
+						<!-- la checkbox renvoie TRUE quand elle est COCHEE -->
+					    <input type="checkbox" id="adminStatus" value="true" name="adminStatus" <c:if test="${user.admin}"> checked</c:if> />
+						Status d'Admin<br/>						
+						<input type="checkbox" id="autorExportPlanningStatus" value="true" name="autorExportPlanningStatus" <c:if test="${user.planning.export}"> checked</c:if> />
+						Autorisation export planning<br/>
+						<input type="checkbox" id="autorAccesPlanningParExt" value="true" name="autorAccesPlanningParExt" <c:if test="${user.planning.acces}"> checked</c:if> />
+						Autorisation accès planning par collaborateur<br/>
+						<input type="checkbox" id="autorModifPlanningParCollab" value="true" name="autorModifPlanningParCollab" <c:if test="${user.planning.modification}"> checked</c:if> />
+						Autorisation modification planning par collaborateur<br/>
+						<input type="button" id="validationModifStatus" value="Enregistrer les modifications" name="validModif"/>
 					</form>
 					<p>$$$$$$$$$$$$$$$</p>
 				</div>

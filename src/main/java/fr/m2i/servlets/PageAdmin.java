@@ -39,7 +39,6 @@ public class PageAdmin extends HttpServlet {
 		EntityManagerFactory factory2 = Persistence.createEntityManagerFactory("UnityPersist");
 		EntityManager em2 = factory2.createEntityManager();
 		
-		System.out.println("sup?");
 		//Récupération liste users form userTable
 		List<User> userListRecup = em2.createNamedQuery("selectAllUsers", User.class).getResultList();
 
