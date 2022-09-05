@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -70,8 +71,8 @@ public class User {
 	private String picture;
 
 	//Association d'un Planning à un User
-	@OneToOne
-	@JoinColumn(name="id_planning")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_planning", referencedColumnName = "id")
 	private Planning planning;
 	
 	@OneToMany(mappedBy="user")
