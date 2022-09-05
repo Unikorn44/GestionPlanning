@@ -16,7 +16,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import fr.m2i.models.User;
 
@@ -30,10 +29,10 @@ public class UserApi {
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User findUserById(@PathParam("id") int id){
-		
+		System.out.println("je suis dans la requête");
 		factory = Persistence.createEntityManagerFactory("UnityPersist");
 		em = factory.createEntityManager();
-		
+		System.out.println("je suis dans la requête");
 		Query q = em.createNamedQuery("selectUserById", User.class);
 		q.setParameter("id", id);
 		User user = (User) q.getSingleResult();
