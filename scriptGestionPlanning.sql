@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS userTable
 -- création de la table login
 CREATE TABLE IF NOT EXISTS loginTable
 (
+	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	login VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
     id_user INT,
