@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS userTable
     admin BOOLEAN,
     picture VARCHAR(2048),
     id_planning INT,
+    compte_actif BOOLEAN,
 	CONSTRAINT FK_PlanningUserId FOREIGN KEY (id_planning)
     REFERENCES planningTable(id)
 );
@@ -95,11 +96,11 @@ INSERT INTO planningTable (export, acces, modification)
  
 -- création de 3 users dont 2 admins
 DELETE FROM userTable;
-INSERT INTO userTable (first_name, last_name, city, birthday_date, phone_number, email, admin, id_planning)
+INSERT INTO userTable (first_name, last_name, city, birthday_date, phone_number, email, admin, id_planning, compte_actif)
  VALUES
- ('Toto', 'TEST', 'Lyon', '1900-05-10', '07 26 37 82 98', 'test@m2ifomration.fr', true, 1 ),
- ('Tata', 'TEST2', 'Paris', '1965-12-21', '06 37 65 89 01', 'test2@m2ifomration.fr', false, 2 ),
- ('Titi', 'TEST3', 'Nantes', '2012-12-03', '06 67 24 31 89', 'test3@m2ifomration.fr', true, 3 );
+ ('Toto', 'TEST', 'Lyon', '1900-05-10', '07 26 37 82 98', 'test@m2ifomration.fr', true, 1, 1 ),
+ ('Tata', 'TEST2', 'Paris', '1965-12-21', '06 37 65 89 01', 'test2@m2ifomration.fr', false, 2, 1 ),
+ ('Titi', 'TEST3', 'Nantes', '2012-12-03', '06 67 24 31 89', 'test3@m2ifomration.fr', true, 3 , 0 );
  
 INSERT INTO loginTable (login, password, id_user)
 VALUES
