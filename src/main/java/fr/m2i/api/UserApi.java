@@ -3,7 +3,7 @@ package fr.m2i.api;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -58,6 +58,7 @@ public class UserApi {
 		@SuppressWarnings("unchecked")
 		List<User> users = q.getResultList();
 		
+		em.close();
 		factory.close();
 		
 		return users;
@@ -65,17 +66,34 @@ public class UserApi {
 	
 	// UPDATE informations user
 	@PUT
-	@Path("/update")
+	@Path("/update/{id}")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public void updateUser(@FormParam("id") int id, @FormParam("first_name") String first_name,
+	public void updateUser(@PathParam("id") int id, @FormParam("first_name") String first_name,
 			@FormParam("last_name") String last_name, @FormParam("city") String city,
 			@FormParam("birthday_date") Date birthday_date, @FormParam("phone_number") String phone_number,
-			@FormParam("email") String email, @FormParam("admin") Boolean admin,
-			@FormParam("picture") String picture) {
-		
+			@FormParam("email") String email, @FormParam("picture") String picture) 
+	{
+				
 		factory = Persistence.createEntityManagerFactory("UnityPersist");
 		em = factory.createEntityManager();
 		
+		em.getTransaction().begin();
+		
+		Query q = em.createNamedQuery("selectUserById", User.class);
+		q.setParameter("id", id);
+		User user = (User) q.getSingleResult();
+		
+		user.setFirst_name(first_name);
+		user.setLast_name(last_name);
+		user.setCity(city);
+		user.setBirthday_date(birthday_date);
+		user.setPhone_number(phone_number);
+		user.setEmail(email);
+		user.setPicture(picture);
+				
+		em.getTransaction().commit();
+		em.close();
+		factory.close();
 	}
 	
 }
