@@ -21,10 +21,8 @@ import javax.persistence.Table;
 @Entity(name="User")
 @Table(name="userTable")
 @NamedQueries({
-	@NamedQuery(name="selectAllUsers",
-				query="SELECT u FROM User u"),
-	@NamedQuery(name="selectUserById",
-				query="SELECT u FROM User u WHERE u.id = :id"),
+	@NamedQuery(name="selectAllUsers", query="SELECT u FROM User u"),
+	@NamedQuery(name="selectUserById", query="SELECT u FROM User u WHERE u.id = :id"),
 	@NamedQuery(name="selectContactForUser",
 				query="SELECT u FROM User u "
 						+ "INNER JOIN u.listUsers l "
@@ -162,4 +160,28 @@ public class User {
 	public void setCompte_actif(boolean compte_actif) {
 		this.compte_actif = compte_actif;
 	}
+	
+	//constructeurS
+	public User() {	
+	}
+
+	public User(int id, String first_name, String last_name, String city, Date birthday_date, String phone_number,
+			String email, boolean admin, String picture, boolean compte_actif, Planning planning,
+			List<List_user> listUsers, List<fr.m2i.models.Contact> contact) {
+		this.id = id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.city = city;
+		this.birthday_date = birthday_date;
+		this.phone_number = phone_number;
+		this.email = email;
+		this.admin = admin;
+		this.picture = picture;
+		this.compte_actif = compte_actif;
+		this.planning = planning;
+		this.listUsers = listUsers;
+		Contact = contact;
+	}
+	
+
 }

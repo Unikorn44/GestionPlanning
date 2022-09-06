@@ -21,10 +21,9 @@
 		<c:forEach var="user" items="${userListRecup}">
 			<div class="cadre">
 				
-
-				<p>user compte </p>
-				<c:out value="${user.compte_actif}"/>
-				
+				<div class=" <c:if test="${user.compte_actif}"> LumièreCompteActif </c:if>">
+					<p>Compte Actif</p>				
+				</div>			
 				
 				<div class="présentationUser">
 					<c:out value="Nom: ${user.first_name}"/><br/>
@@ -36,8 +35,11 @@
 				
 				<div class="serieBoutonsAdmin">
 					<!-- FORM pour traitement des options -->
-					<form action="/Base/list?req=mod&id=${user.id}" method="POST">
-						<!-- la checkbox renvoie TRUE quand elle est COCHEE -->
+					<form action="pageadmin" method="POST">
+						<input type="text" name="userId" value="${user.id}" hidden/>
+						<!-- la checkbox renvoie TRUE quand elle est COCHEE  et FALSE quand elle ne l'est pas -->
+						<input type="checkbox" id="compteActif" value="true" name="compteActif" <c:if test="${user.compte_actif}"> checked</c:if> />
+						Compte Actif<br/>		
 					    <input type="checkbox" id="adminStatus" value="true" name="adminStatus" <c:if test="${user.admin}"> checked</c:if> />
 						Status d'Admin<br/>						
 						<input type="checkbox" id="autorExportPlanningStatus" value="true" name="autorExportPlanningStatus" <c:if test="${user.planning.export}"> checked</c:if> />
@@ -46,7 +48,7 @@
 						Autorisation accès planning par collaborateur<br/>
 						<input type="checkbox" id="autorModifPlanningParCollab" value="true" name="autorModifPlanningParCollab" <c:if test="${user.planning.modification}"> checked</c:if> />
 						Autorisation modification planning par collaborateur<br/>
-						<input type="button" id="validationModifStatus" value="Enregistrer les modifications" name="validModif"/>
+						<input type="submit" id="validationModifStatus" value="Enregistrer les modifications" name="validModif"/>
 					</form>
 					<p>$$$$$$$$$$$$$$$</p>
 				</div>
