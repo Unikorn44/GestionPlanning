@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -18,11 +19,14 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="planningTable")
+@Table(name="planningtable")
 @NamedQueries({
 	@NamedQuery(name="selectAllPlannings", query="select element from Planning element"),
 	@NamedQuery(name="selectPlanningById", query="select element from Planning element where element.id = :id"),
 	@NamedQuery(name="deletePlanningById", query="delete from Planning element where element.id = :id")
+})
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "deleteNatifTest",query = "DELETE FROM planningtable WHERE id=:id")
 })
 public class Planning {
 

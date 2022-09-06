@@ -14,17 +14,47 @@
 </head>
 
 <body>
-	<input type="button" value="Nouveau Compte" name="NouveauCompte"/>
-	<input type="button" value="Détruire Compte" name="DetruireCompte"/>
+	
+	<!-- ATTENTION, bouton INACTIF, gérer apparition div "créationUser" lors appui -->
+	<input type="button" value="Créer ce nouvel Utilisateur" name="newUser"/>
+	
+	<!-- A ne faire apparaître QUE quand appui bouton Nouveau compte -->
+	<div class="créationUser">
+		<form action="pageadmin?req=new" method="POST">
+			<label>Nom:</label>
+				<input type="text" id="last_name" placeholder="Nom" name="last_name" required><br>
+			<label>Prénom:</label>
+				<input type="text" id="first_name" placeholder="Prénom" name="first_name" required><br>
+			<label>Ville:</label>
+				<input type="text" id="city" placeholder="Ville" name="city" placeholder="Lyon" required><br>
+			<label>Date d'anniversaire:</label>
+				<input type="date" id="birthday_date" name="birthday_date" required><br>
+			<label>Téléphone:</label>
+				<input type="tel" id="phone_number" placeholder="01-23-45-67-89" name="phone_number" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" required><br>
+			<label>email:</label>
+				<input type="email" id="email" placeholder="JohnDoe@BigBox.com" name="email" required><br>
+			<input type="submit" value="Créer un nouvel utilisateur" name="newUser"/>
+		</form>
+	</div>
 	
 	<div class="listUsers">
 		<c:forEach var="user" items="${userListRecup}">
-			<div class="cadre">
-				
-				<div class=" <c:if test="${user.compte_actif}"> LumièreCompteActif </c:if>">
-					<p>Compte Actif</p>				
-				</div>			
-				
+			
+			<div class="cadreUser">
+				<!-- if pour indicateur compte actif/pas -->
+				<div class="activitéCompte">	
+					<c:if test="${user.compte_actif}">	
+						<div class="LumièreCompteActif">
+							<p>Compte Actif</p>				
+						</div>
+					 </c:if>
+					 <c:if test="${!user.compte_actif}">	
+						<div class="LumièreCompteActif">
+							<p>Compte Inactif</p>				
+						</div>			
+					</c:if>			
+				</div>	
+
 				<div class="présentationUser">
 					<c:out value="Nom: ${user.first_name}"/><br/>
 					<c:out value="Prénom:  ${user.last_name}"/>	
@@ -33,9 +63,9 @@
 					<img class="picture" src="smile.jpg" alt="Profile picture">
 				</div>
 				
-				<div class="serieBoutonsAdmin">
-					<!-- FORM pour traitement des options -->
-					<form action="pageadmin" method="POST">
+				<div class="serieBoutonsAdmin">					
+					<!-- FORM pour traitement des options -->		
+					<form action="pageadmin?req=mod" method="POST">
 						<input type="text" name="userId" value="${user.id}" hidden/>
 						<!-- la checkbox renvoie TRUE quand elle est COCHEE  et FALSE quand elle ne l'est pas -->
 						<input type="checkbox" id="compteActif" value="true" name="compteActif" <c:if test="${user.compte_actif}"> checked</c:if> />
@@ -50,9 +80,19 @@
 						Autorisation modification planning par collaborateur<br/>
 						<input type="submit" id="validationModifStatus" value="Enregistrer les modifications" name="validModif"/>
 					</form>
-					<p>$$$$$$$$$$$$$$$</p>
+					<br/>
 				</div>
+				
+				<!-- partie suppression user -->
+				<div class="boutonAdmin">
+					<form action="pageadmin?req=out" method="POST">
+						<input type="text" name="userId" value="${user.id}" hidden/>
+						<input type="submit" value="Supprimer utilisateur" name="destroyUser"/>
+					</form>
+				</div>
+						
 			</div>
+			
 		</c:forEach>	
 	</div>
 	

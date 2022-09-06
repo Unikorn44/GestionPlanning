@@ -1,10 +1,10 @@
 package fr.m2i.models;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 
 @Entity(name="User")
-@Table(name="userTable")
+@Table(name="usertable")
 @NamedQueries({
 	@NamedQuery(name="selectAllUsers", query="SELECT u FROM User u"),
 	@NamedQuery(name="selectUserById", query="SELECT u FROM User u WHERE u.id = :id"),
@@ -73,7 +73,7 @@ public class User {
 	private boolean compte_actif;
 
 	//Association d'un Planning à un User
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="id_planning", referencedColumnName = "id")
 	private Planning planning;
 	
@@ -161,7 +161,7 @@ public class User {
 		this.compte_actif = compte_actif;
 	}
 	
-	//constructeurS
+	//constructeurs
 	public User() {	
 	}
 
@@ -183,5 +183,4 @@ public class User {
 		Contact = contact;
 	}
 	
-
 }
