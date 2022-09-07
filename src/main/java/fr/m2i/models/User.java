@@ -140,7 +140,7 @@ public class User {
 		this.email = email;
 	}
 	
-	public boolean isAdmin() {
+	public boolean getAdmin() {
 		return admin;
 	}
 	public void setAdmin(boolean admin) {
