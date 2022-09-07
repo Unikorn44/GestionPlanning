@@ -43,6 +43,7 @@ public class AuthFilter implements Filter {
 					String tokenBaerer = headerValue;
 					String token = tokenBaerer.substring(tokenBaerer.indexOf(" ") + 1);
 					if(tokenService.isValid(token)) {
+						System.out.println("token valid");
 						chain.doFilter(request, response);						
 					} else {
 						System.out.println("erreur");
