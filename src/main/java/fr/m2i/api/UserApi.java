@@ -3,7 +3,6 @@ package fr.m2i.api;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;
@@ -67,13 +65,12 @@ public class UserApi {
 	// UPDATE informations user
 	@PUT
 	@Path("/update/{id}")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public void updateUser(@PathParam("id") int id, @FormParam("first_name") String first_name,
-			@FormParam("last_name") String last_name, @FormParam("city") String city,
-			@FormParam("birthday_date") Date birthday_date, @FormParam("phone_number") String phone_number,
-			@FormParam("email") String email, @FormParam("picture") String picture) 
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateUser(@PathParam("id") int id, User user)
 	{
-				
+
+		System.out.println("je suis dans le update");
+		
 		factory = Persistence.createEntityManagerFactory("UnityPersist");
 		em = factory.createEntityManager();
 		
@@ -81,15 +78,15 @@ public class UserApi {
 		
 		Query q = em.createNamedQuery("selectUserById", User.class);
 		q.setParameter("id", id);
-		User user = (User) q.getSingleResult();
+		User userDb = (User) q.getSingleResult();
 		
-		user.setFirst_name(first_name);
-		user.setLast_name(last_name);
-		user.setCity(city);
-		user.setBirthday_date(birthday_date);
-		user.setPhone_number(phone_number);
-		user.setEmail(email);
-		user.setPicture(picture);
+		userDb.setFirst_name(user.getFirst_name());
+		userDb.setLast_name(user.getLast_name());
+		userDb.setCity(user.getCity());
+		userDb.setBirthday_date(user.getBirthday_date());
+		userDb.setPhone_number(user.getPhone_number());
+		userDb.setEmail(user.getEmail());
+		userDb.setPicture(user.getPicture());
 				
 		em.getTransaction().commit();
 		em.close();

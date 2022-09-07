@@ -52,6 +52,7 @@ public class TokenService {
 		public Boolean isValid(String token) {
 			try {
 				System.out.println("je suis dans la méthod valid");
+				System.out.println(token);
 				Boolean valid = SignedJWT.parse(token).verify(new ECDSAVerifier(this.key.toECPublicKey()));
 				return valid;
 			} catch (JOSEException e) {
