@@ -57,6 +57,8 @@ public class UserApi {
 		@SuppressWarnings("unchecked")
 		List<User> users = q.getResultList();
 		
+		System.out.println("===== ID ===== " + id);
+		
 		em.close();
 		factory.close();
 		
