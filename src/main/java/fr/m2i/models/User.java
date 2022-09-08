@@ -1,18 +1,16 @@
 package fr.m2i.models;
 
-import java.sql.Date;
-import java.util.ArrayList;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -20,12 +18,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name="userTable")
+@Entity(name="User")
+@Table(name="usertable")
 @NamedQueries({
-	@NamedQuery(name="selectAllUsers", query="select element from User element"),
-	@NamedQuery(name="selectUserById", query="select element from User element where element.id = :id"),
-	@NamedQuery(name="deleteUserById", query="delete from User element where element.id = :id")
+	@NamedQuery(name="selectAllUsers", query="SELECT u FROM User u"),
+	@NamedQuery(name="selectUserById", query="SELECT u FROM User u WHERE u.id = :id"),
+	@NamedQuery(name="selectContactForUser",
+				query="SELECT u FROM User u "
+						+ "INNER JOIN u.listUsers l "
+						+ "INNER JOIN u.Contact c "
+						+ "WHERE c.listUser.id = :id"),
 })
 public class User {
 	
@@ -35,58 +37,59 @@ public class User {
 	private int id;
 	
 	@Basic
-	@Column(name="first_name")	
+	@Column(name="first_name")
 	private String first_name;
 	
 	@Basic
-	@Column(name="last_name")		
+	@Column(name="last_name")	
 	private String last_name;
 	
 	@Basic
-	@Column(name="city")	
+	@Column(name="city")
 	private String city;
 	
 	@Basic
-	@Column(name="birthday_date")	
+	@Column(name="birthday_date")
 	private Date birthday_date;
-	
+
 	@Basic
-	@Column(name="phone_number")	
+	@Column(name="phone_number")
 	private String phone_number;
 
 	@Basic
 	@Column(name="email")
 	private String email;
-	
-	
+
 	@Basic
-	@Column(name="login")
-	private String login;
-	
-	@Basic
-	@Column(name="password")	
-	private String password;
-	
-	@Basic
-	@Column(name="admin")	
+	@Column(name="admin")
 	private boolean admin;
-	
+
 	@Basic
-	@Column(name="picture")	
+	@Column(name="picture")
 	private String picture;
 	
 	@Basic
-	@Column(name="id_planning")	
-	private int id_planning;
-	
+	@Column(name="compte_actif")
+	private boolean compte_actif;
+
 	//Association d'un Planning à un User
 	@OneToOne
-	@JoinColumn(name="id_planning")
+	@JoinColumn(name="id_planning", referencedColumnName = "id")
 	private Planning planning;
 	
-	//Association à un liste users
-	@OneToMany
-	private List<User> users = new ArrayList<>();
+	@OneToMany(mappedBy="user")
+	private List<List_user> listUsers;
+	
+	@OneToMany(mappedBy="user")
+	private List<Contact> Contact;
+
+	public Planning getPlanning() {
+		return planning;
+	}
+
+	public void setPlanning(Planning planning) {
+		this.planning = planning;
+	}
 	
 	public int getId() {
 		return id;
@@ -137,21 +140,7 @@ public class User {
 		this.email = email;
 	}
 	
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public boolean isAdmin() {
+	public boolean getAdmin() {
 		return admin;
 	}
 	public void setAdmin(boolean admin) {
@@ -165,13 +154,33 @@ public class User {
 		this.picture = picture;
 	}
 	
-	public int getId_planning() {
-		return id_planning;
+	public boolean getCompte_actif() {
+		return compte_actif;
 	}
-	public void setId_planning(int id_planning) {
-		this.id_planning = id_planning;
+	public void setCompte_actif(boolean compte_actif) {
+		this.compte_actif = compte_actif;
+	}
+	
+	//constructeurs
+	public User() {	
 	}
 
-	
+	public User(int id, String first_name, String last_name, String city, Date birthday_date, String phone_number,
+			String email, boolean admin, String picture, boolean compte_actif, Planning planning,
+			List<List_user> listUsers, List<fr.m2i.models.Contact> contact) {
+		this.id = id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.city = city;
+		this.birthday_date = birthday_date;
+		this.phone_number = phone_number;
+		this.email = email;
+		this.admin = admin;
+		this.picture = picture;
+		this.compte_actif = compte_actif;
+		this.planning = planning;
+		this.listUsers = listUsers;
+		Contact = contact;
+	}
 	
 }

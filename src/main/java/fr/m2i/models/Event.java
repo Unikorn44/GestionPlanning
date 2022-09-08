@@ -2,7 +2,6 @@ package fr.m2i.models;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -16,15 +15,31 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity(name="Event")
 @Table(name="eventTable")
 @NamedQueries({
-	@NamedQuery(name="selectAllEvents", query="select element from Event element"),
-	@NamedQuery(name="selectEventById", query="select element from Event element where element.id = :id"),
+	@NamedQuery(name="selectAllEvents", query="SELECT e FROM Event e"),
+	@NamedQuery(name="selectEventsByUserId", query="SELECT e "
+			+ "FROM Event e "
+			+ "INNER JOIN e.planningEvents pe "
+			+ "INNER JOIN pe.planning p "
+			+ "INNER JOIN p.user u "
+			+ "WHERE u.id = :id"),
 	@NamedQuery(name="deleteEventById", query="delete from Event element where element.id = :id")
 })
 public class Event {
-
+	
+	/*
+	 *query="SELECT e "
+			+ "FROM User u "
+			+ "INNER JOIN u.planning p "
+			+ "INNER JOIN p.planningEvents pe "
+			+ "INNER JOIN pe.event e "
+			+ "where u.id = :id"), 
+	 */
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -50,55 +65,64 @@ public class Event {
 	private String description;
 	
 	//Association à table multi
-	@OneToMany
-	private List<Event> events = new ArrayList<>();
+	@OneToMany(mappedBy="event")
+	@JsonBackReference
+	private List<Planning_event> planningEvents;
 	
-    public int getId() {
-    	return id;
-    }
-    
-	public void setTitle(String title) {
-		this.title = title;
-	}   
-   
-    public String getTitle() {
-    	return title;
-    }
-    
+	public List<Planning_event> getPlanningEvents() {
+		return planningEvents;
+	}
+
+	public void setPlanningEvents(List<Planning_event> planningEvents) {
+		this.planningEvents = planningEvents;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 	public void setId(int id) {
 		this.id = id;
-	}  	
-	
-    public Date getDate_event() {
-    	return date_event;
-    }
-    
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Date getDate_event() {
+		return date_event;
+	}
+
 	public void setDate_event(Date date_event) {
 		this.date_event = date_event;
-	}  	
-	
-    public Time getStart_time() {
-    	return start_time;
-    }
-    
-	public void setDate_event(Time start_time) {
+	}
+
+	public Time getStart_time() {
+		return start_time;
+	}
+
+	public void setStart_time(Time start_time) {
 		this.start_time = start_time;
-	}  
-	
-    public Time getEnd_time() {
-    	return end_time;
-    }
-    
+	}
+
+	public Time getEnd_time() {
+		return end_time;
+	}
+
 	public void setEnd_time(Time end_time) {
 		this.end_time = end_time;
-	}  
-	
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
-	}   
-   
-    public String getDescription() {
-    	return description;
-    }
-    
+	}
+	
 }
