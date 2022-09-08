@@ -11,11 +11,14 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import fr.m2i.models.Contact;
 import fr.m2i.models.Event;
+import fr.m2i.models.List_user;
 import fr.m2i.models.Planning;
 import fr.m2i.models.User;
 
@@ -131,4 +134,37 @@ public class UserApi {
 			
 		return events;
 	}
+	
+	// Ajout d'un user dans la liste de contact
+	@POST
+	@Path("/{id}/add/contact/{idCollab}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addContact(@PathParam("id") int id, @PathParam("idCollab") int idCollab) {
+		
+		System.out.println("addContact");
+		
+		factory = Persistence.createEntityManagerFactory("UnityPersist");
+		em = factory.createEntityManager();
+		
+		em.getTransaction().begin();
+		
+		Query queryListUser = em.createNamedQuery("SelectListByIdUser", List_user.class);
+		queryListUser.setParameter("id", id);
+		List_user listUser = (List_user) queryListUser.getSingleResult();
+		System.out.println("listContact");
+		
+		Query userColab = em.createNamedQuery("selectUserById", User.class);
+		userColab.setParameter("id", idCollab);
+		User user = (User) userColab.getSingleResult();
+		System.out.println("userforever" + user);
+		
+		Contact contact = new Contact(user, listUser);
+		
+		em.persist(contact);
+		em.getTransaction().commit();
+		em.close();
+		factory.close();
+		
+	}
+	
 }
