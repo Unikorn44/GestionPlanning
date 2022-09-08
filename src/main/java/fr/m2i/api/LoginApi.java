@@ -37,12 +37,19 @@ public class LoginApi {
 		// Emet un token pour l'user
 		this.tokenService = new TokenService();
 		String token = tokenService.issueToken(login);
-	
+			
 		HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("authorization","Baerer " + token);
-        return ResponseEntity.ok()
-                  .headers(responseHeaders)
-                  .body(user);
+		responseHeaders.set("authorization","Baerer " + token);
+
+		if(user.getCompte_actif()) {			
+	        return ResponseEntity.ok()
+	                  .headers(responseHeaders)
+	                  .body(user);
+		} else {
+			System.out.println("je suis dans le else");
+			return ResponseEntity.badRequest()
+	                  .body(user);
+		}
 	}
 	
 	// Vérification en base de données si le user est connu

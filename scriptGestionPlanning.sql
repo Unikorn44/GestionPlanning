@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS loginTable
 (
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	login VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
+    password VARCHAR(250) NOT NULL,
     id_user INT,
     CONSTRAINT FK_UserId FOREIGN KEY (id_user)
     REFERENCES userTable(id)
@@ -97,18 +97,18 @@ INSERT INTO planningTable (export, acces, modification)
  
 -- création de 3 users dont 2 admins
 DELETE FROM userTable;
-INSERT INTO userTable (first_name, last_name, city, birthday_date, phone_number, email, admin, id_planning, compte_actif)
+INSERT INTO userTable (first_name, last_name, city, birthday_date, phone_number, email, admin, id_planning, compte_actif, picture)
  VALUES
- ('Toto', 'TEST', 'Lyon', '1900-05-10', '07 26 37 82 98', 'test@m2ifomration.fr', true, 1, 1 ),
- ('Tata', 'TEST2', 'Paris', '1965-12-21', '06 37 65 89 01', 'test2@m2ifomration.fr', false, 2, 1 ),
- ('Titi', 'TEST3', 'Nantes', '2012-12-03', '06 67 24 31 89', 'test3@m2ifomration.fr', true, 3 , 0 ),
- ('LAO', 'jeremy', 'Lyon', '1997-06-15', '11 22 33 44 55', 'jerem@m2ifomration.fr', true, 4 , 1 );
+ ('Charlotte', 'Marion', 'Lyon', '1989-05-09', '07 26 37 82 98', 'charlotte@m2ifomration.fr', true, 1, 1, 'https://source.unsplash.com/user/wsanter'),
+ ('Pierre-Henri', 'Dupont', 'Nantes', '1973-07-28', '06 37 65 89 01', 'pierre-henry@m2ifomration.fr', false, 2, 1, 'https://source.unsplash.com/user/wsanter'),
+ ('Maurice', 'Ravel', 'Bayonne', '2012-12-03', '06 67 24 31 89', 'maurice@m2ifomration.fr', true, 3 , 0 ),
+ ('Jeremy', 'Lao', 'Dijon', '1997-06-15', '11 22 33 44 55', 'jerem@m2ifomration.fr', true, 4 , 1,'https://source.unsplash.com/user/wsanter' );
  
 INSERT INTO loginTable (login, password, id_user)
 VALUES
-	('test', '123456', 1 ),
-	('test2', '123456', 2 ),
-	('test3', '123456', 3 ),
+	('charlotte', '123456', 1 ),
+	('pierre-henri', '123456', 2 ),
+	('maurice', '123456', 3 ),
     ('jerem', '7777', 4 );
 
 -- création de 2 relations dans la table list_user
@@ -126,7 +126,10 @@ INSERT INTO ContactTable (id_user, id_list_user)
  (1, 3),
  (2, 1),
  (2, 3),
- (3, 1);
+ (3, 1),
+ (4, 1),
+ (4, 2);
+ 
 
 -- création de 3 events
 INSERT INTO eventTable (title, date_event, start_time, end_time, description)
@@ -136,7 +139,8 @@ INSERT INTO eventTable (title, date_event, start_time, end_time, description)
  ('Finish', '2022-10-15', '16:30:00', '17:00:00', 'Fin de formation'),
  ('Spring Security', '2022-09-06', '8:30:00', '17:00:00', 'Apprentissage de Spring Security'),
  ('Présentation blanc', '2022-09-07', '8:30:00', '17:00:00', 'On montre a Freddy'),
- ('Présentation Cap Gemini', '2022-09-09', '15:00:00', '17:00:00', 'On montre a Cap G');
+ ('Présentation Cap Gemini', '2022-09-09', '15:00:00', '17:00:00', 'On montre a Cap G'),
+ ('Travail', '2022-09-19', '09:00:00', '17:00:00', 'Début du travail à Infotel');
  
 -- création de 9 planning event
 INSERT INTO planning_eventTable (id_event, id_planning)
@@ -153,5 +157,7 @@ INSERT INTO planning_eventTable (id_event, id_planning)
  (3, 4),
  (4, 4),
  (5, 4),
- (6, 4);
+ (6, 4),
+ (7, 4),
+ (7, 1);
  
