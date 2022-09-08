@@ -7,43 +7,43 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name="Event")
 @Table(name="eventTable")
 @NamedQueries({
 	@NamedQuery(name="selectAllEvents", query="SELECT e FROM Event e"),
-	@NamedQuery(name="selectEventsByUserId", query="SELECT e "
-			+ "FROM Event e "
-			+ "INNER JOIN e.planningEvents pe "
-			+ "INNER JOIN pe.planning p "
-			+ "INNER JOIN p.user u "
-			+ "WHERE u.id = :id"),
 	@NamedQuery(name="deleteEventById", query="delete from Event element where element.id = :id")
 })
 public class Event {
 	
 	/*
-	 *query="SELECT e "
-			+ "FROM User u "
-			+ "INNER JOIN u.planning p "
-			+ "INNER JOIN p.planningEvents pe "
-			+ "INNER JOIN pe.event e "
-			+ "where u.id = :id"), 
+	 query="SELECT e "
+			+ "FROM Event e "
+			+ "INNER JOIN e.planningEvents pe "
+			+ "INNER JOIN pe.planning p "
+			+ "INNER JOIN p.user u "
+			+ "WHERE u.id = :id"),
 	 */
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Basic
 	@Column(name="title")
 	private String title;
@@ -65,16 +65,19 @@ public class Event {
 	private String description;
 	
 	//Association à table multi
-	@OneToMany(mappedBy="event")
-	@JsonBackReference
-	private List<Planning_event> planningEvents;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="planning_eventTable", 
+		joinColumns=@JoinColumn(name="id_event"), 
+		inverseJoinColumns=@JoinColumn(name="id_planning"))
+	@JsonIgnore
+	private List<Planning> plannings;
 	
-	public List<Planning_event> getPlanningEvents() {
-		return planningEvents;
+	public List<Planning> getPlannings() {
+		return plannings;
 	}
 
-	public void setPlanningEvents(List<Planning_event> planningEvents) {
-		this.planningEvents = planningEvents;
+	public void setPlannings(List<Planning> plannings) {
+		this.plannings = plannings;
 	}
 
 	public int getId() {
@@ -123,6 +126,18 @@ public class Event {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public Event() {
+	}
+	
+	public Event(String title, Date date_event, Time start_time, Time end_time, String description, List<Planning> plannings) {
+		this.title = title;
+		this.date_event = date_event;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.description = description;
+		this.plannings = plannings;
 	}
 	
 }
