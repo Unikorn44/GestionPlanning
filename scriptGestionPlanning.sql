@@ -101,7 +101,7 @@ INSERT INTO userTable (first_name, last_name, city, birthday_date, phone_number,
  VALUES
  ('Charlotte', 'Marion', 'Lyon', '1989-05-09', '07 26 37 82 98', 'charlotte@m2ifomration.fr', true, 1, 1, 'https://source.unsplash.com/user/wsanter'),
  ('Pierre-Henri', 'Dupont', 'Nantes', '1973-07-28', '06 37 65 89 01', 'pierre-henry@m2ifomration.fr', false, 2, 1, 'https://source.unsplash.com/user/wsanter'),
- ('Maurice', 'Ravel', 'Bayonne', '2012-12-03', '06 67 24 31 89', 'maurice@m2ifomration.fr', true, 3 , 0 ),
+ ('Maurice', 'Ravel', 'Bayonne', '2012-12-03', '06 67 24 31 89', 'maurice@m2ifomration.fr', true, 3 , 0, '' ),
  ('Jeremy', 'Lao', 'Dijon', '1997-06-15', '11 22 33 44 55', 'jerem@m2ifomration.fr', true, 4 , 1,'https://source.unsplash.com/user/wsanter' );
  
 INSERT INTO loginTable (login, password, id_user)
