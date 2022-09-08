@@ -24,6 +24,22 @@ public class UserApi {
 	EntityManagerFactory factory;
 	EntityManager em;
 	
+	// Récupération de tous les users
+	@GET
+	@Path("/all")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> findAllUser() {
+		factory = Persistence.createEntityManagerFactory("UnityPersist");
+		em = factory.createEntityManager();
+		System.out.println("je suis dans la requête");
+		List<User> userListRecup = em.createNamedQuery("selectAllUsers", User.class).getResultList();
+
+		em.close();
+		factory.close();
+		
+		return userListRecup;
+	}
+	
 	// Récupération des informations User pour un user
 	@GET
 	@Path("/{id}")
@@ -108,7 +124,6 @@ public class UserApi {
 		Query q = em.createNamedQuery("selectPlanningByUserId", Planning.class);
 		q.setParameter("id", id);
 		
-		@SuppressWarnings("unchecked")
 		Planning planningUser = (Planning) q.getSingleResult();
 		List<Event> events = planningUser.getEvents();
 			
