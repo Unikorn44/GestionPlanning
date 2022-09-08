@@ -170,8 +170,8 @@ public class PageAdmin extends HttpServlet {
 	
 	private String createPassword(User user) {
 		
-		char chiffre1 = user.getPhone_number().charAt(6);
-		char chiffre2 = user.getPhone_number().charAt(7);
+		int chiffre1 = (int) (Math.random() * 10);
+		int chiffre2 = (int) (Math.random() * 10);
 		
 		String lettersOfName = user.getFirst_name();
 		int length = lettersOfName.length();

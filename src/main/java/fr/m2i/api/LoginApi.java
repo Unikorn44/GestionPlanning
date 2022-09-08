@@ -76,6 +76,8 @@ public class LoginApi {
 		byte[] data = password.getBytes(StandardCharsets.UTF_8);
 		String result = DigestUtils.md5DigestAsHex(data);
 		
+		System.out.println("resultat: " + result);
+		
 		return result;
 	}
 }
