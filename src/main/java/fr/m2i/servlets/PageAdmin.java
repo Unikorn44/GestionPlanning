@@ -29,7 +29,7 @@ public class PageAdmin extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String PAGE="/WEB-INF/pages/pageAdmin.jsp";
-		
+			
     public PageAdmin() {
     	super();
     }
@@ -99,7 +99,7 @@ public class PageAdmin extends HttpServlet {
 			Login login2create = new Login();
 			login2create.setLogin(user2Create.getFirst_name());
 			String password = createPassword(user2Create);
-			String sha = cryptSha(password);
+			String sha = create(password);
 			login2create.setPassword(sha);
 			login2create.setUser(user2Create);
 			
@@ -186,8 +186,7 @@ public class PageAdmin extends HttpServlet {
 		return "user" + chiffre1 + chiffre2 + lettersOfName;
 	}
 	
-	private String cryptSha(String password) {
-		
+	private String create(String password) {
 		byte[] data = password.getBytes(StandardCharsets.UTF_8);
 		String result = DigestUtils.md5DigestAsHex(data);
 		

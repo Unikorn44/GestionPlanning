@@ -35,7 +35,7 @@ public class LoginApi {
 			
 		// Authentifier user avec login et password
 		Login log;
-		String cryptPassword = cryptPassword(password);
+		String cryptPassword = create(password);
 		log = authenticate(login, cryptPassword);
 		User user = log.getUser();
 		// Emet un token pour l'user
@@ -72,11 +72,10 @@ public class LoginApi {
 	     return logFound;
 	 }
 	 
-	 private String cryptPassword(String password) {
-		 
+	 private String create(String password) {
 		byte[] data = password.getBytes(StandardCharsets.UTF_8);
 		String result = DigestUtils.md5DigestAsHex(data);
-					 
+		
 		return result;
-	 }
+	}
 }
