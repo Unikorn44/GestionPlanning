@@ -32,4 +32,36 @@ public class Contact {
 	@JoinColumn(name="id_list_user")
 	private List_user listUser;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List_user getListUser() {
+		return listUser;
+	}
+
+	public void setListUser(List_user listUser) {
+		this.listUser = listUser;
+	}
+	
+	public Contact(User user, List_user listUser) {
+		this.user = user;
+		this.listUser = listUser;
+	}
+	
+	public Contact() {
+	}
+
 }
