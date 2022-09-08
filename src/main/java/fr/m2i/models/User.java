@@ -7,15 +7,20 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity(name="User")
@@ -28,6 +33,9 @@ import javax.persistence.Table;
 						+ "INNER JOIN u.listUsers l "
 						+ "INNER JOIN u.Contact c "
 						+ "WHERE c.listUser.id = :id"),
+	@NamedQuery(name="selectPlanningByIdUser",
+				query="SELECT p FROM User u "
+						+ "INNER JOIN u.planning p "),
 })
 public class User {
 	
@@ -75,6 +83,7 @@ public class User {
 	//Association d'un Planning à un User
 	@OneToOne
 	@JoinColumn(name="id_planning", referencedColumnName = "id")
+	@JsonManagedReference
 	private Planning planning;
 	
 	@OneToMany(mappedBy="user")

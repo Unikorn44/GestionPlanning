@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.m2i.service.TokenService;
 
-@WebFilter("/api/user/*")
+@WebFilter({"/api/user/*", "/api/event/*"})
 public class AuthFilter implements Filter {
 	
 	private TokenService tokenService;
