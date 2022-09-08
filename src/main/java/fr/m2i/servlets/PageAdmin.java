@@ -1,7 +1,7 @@
 package fr.m2i.servlets;
 
 import java.io.IOException;
-
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,29 +18,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.util.DigestUtils;
+
+import fr.m2i.models.Login;
 import fr.m2i.models.Planning;
 import fr.m2i.models.User;
 
-/**
- * Servlet implementation class PageAdmin
- */
 @WebServlet("/pageadmin")
 public class PageAdmin extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String PAGE="/WEB-INF/pages/pageAdmin.jsp";
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+			
     public PageAdmin() {
     	super();
-    	// TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		EntityManagerFactory factory2 = Persistence.createEntityManagerFactory("UnityPersist");
@@ -58,9 +51,6 @@ public class PageAdmin extends HttpServlet {
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		EntityManagerFactory factory2 = Persistence.createEntityManagerFactory("UnityPersist");
@@ -73,7 +63,7 @@ public class PageAdmin extends HttpServlet {
 		//création nouvel utilisateur
 		if (requete.equalsIgnoreCase("new")) {
 			
-			//Récupération des parametres
+			//Recuperation des parametres
 			String last_name = request.getParameter("last_name");
 			String first_name = request.getParameter("first_name");
 			String city = request.getParameter("city");
@@ -86,14 +76,13 @@ public class PageAdmin extends HttpServlet {
 				birthday_date = (Date) formatter.parse(request.getParameter("birthday_date"));
 
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 			
 			String phone_number = request.getParameter("phone_number");
 			String email = request.getParameter("email");
 
-			//Création nouvel utilisateur
+			//Creation new user
 			User user2Create = new User();
 			
 			user2Create.setFirst_name(first_name);
@@ -106,11 +95,21 @@ public class PageAdmin extends HttpServlet {
 			user2Create.setCompte_actif(false);
 			user2Create.setAdmin(false);
 			
+			// Creation login
+			Login login2create = new Login();
+			login2create.setLogin(user2Create.getFirst_name());
+			String password = createPassword(user2Create);
+			String sha = create(password);
+			login2create.setPassword(sha);
+			login2create.setUser(user2Create);
+			
+			// Creation planning user
 			Planning planning2Create = new Planning();
 			planning2Create.setExport(false);
 			planning2Create.setAcces(false);
 			planning2Create.setModification(false);
 			
+			em2.persist(login2create);
 			em2.persist(planning2Create);
 			
 			user2Create.setPlanning(planning2Create);
@@ -161,12 +160,36 @@ public class PageAdmin extends HttpServlet {
 			em2.createNamedQuery("deleteNatifTest").setParameter("id", planningId).executeUpdate();					
 		}
 		
-		//Commit des opérations
+		//Commit des operations
 		em2.getTransaction().commit();		
 		em2.close();
 		
 		//redirection vers pageadmin
 		response.sendRedirect("/Jpa/pageadmin");
 	}
-
+	
+	private String createPassword(User user) {
+		
+		int chiffre1 = (int) (Math.random() * 10);
+		int chiffre2 = (int) (Math.random() * 10);
+		
+		String lettersOfName = user.getFirst_name();
+		int length = lettersOfName.length();
+		if(length > 2) {
+			lettersOfName = lettersOfName.substring(length - 2);
+		} else {
+			lettersOfName = lettersOfName.substring(length - 1);
+		}
+		
+		System.out.println("userPassword: " + "user" + chiffre1 + chiffre2 + lettersOfName);
+				
+		return "user" + chiffre1 + chiffre2 + lettersOfName;
+	}
+	
+	private String create(String password) {
+		byte[] data = password.getBytes(StandardCharsets.UTF_8);
+		String result = DigestUtils.md5DigestAsHex(data);
+		
+		return result;
+	}
 }

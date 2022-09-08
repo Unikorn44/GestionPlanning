@@ -99,17 +99,17 @@ INSERT INTO planningTable (export, acces, modification)
 DELETE FROM userTable;
 INSERT INTO userTable (first_name, last_name, city, birthday_date, phone_number, email, admin, id_planning, compte_actif, picture)
  VALUES
- ('Charlotte', 'Marion', 'Lyon', '1989-05-09', '07 26 37 82 98', 'charlotte@m2ifomration.fr', true, 1, 1, 'https://source.unsplash.com/user/wsanter'),
+ ('Charlotte', 'Marion', 'Lyon', '1989-05-09', '07 26 37 82 98', 'charlotte@m2ifomration.fr', true, 1, 1, 'https://source.unsplash.com/random/300×300'),
  ('Pierre-Henri', 'Dupont', 'Nantes', '1973-07-28', '06 37 65 89 01', 'pierre-henry@m2ifomration.fr', false, 2, 1, 'https://source.unsplash.com/user/wsanter'),
  ('Maurice', 'Ravel', 'Bayonne', '2012-12-03', '06 67 24 31 89', 'maurice@m2ifomration.fr', true, 3 , 0, '' ),
- ('Jeremy', 'Lao', 'Dijon', '1997-06-15', '11 22 33 44 55', 'jerem@m2ifomration.fr', true, 4 , 1,'https://source.unsplash.com/user/wsanter' );
+ ('Jeremy', 'Lao', 'Dijon', '1997-06-15', '11 22 33 44 55', 'jerem@m2ifomration.fr', true, 4 , 1,'' );
  
 INSERT INTO loginTable (login, password, id_user)
 VALUES
-	('charlotte', '123456', 1 ),
-	('pierre-henri', '123456', 2 ),
-	('maurice', '123456', 3 ),
-    ('jerem', '7777', 4 );
+	('Charlotte', 'ee958440ac8c0d2314ffc09662155062', 1 ),
+	('Pierre-Henri', '4634605706c2d0d15409930754aa598b', 2 ),
+	('Maurice', '882d444b0d0d12f1bea970d98c6bb02a', 3 ),
+    ('Jeremy', 'e4233fe954925b4ecd0d5b3c54a61482', 4 );
 
 -- création de 2 relations dans la table list_user
 INSERT INTO List_userTable (id_user)
