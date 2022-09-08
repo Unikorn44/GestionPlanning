@@ -16,6 +16,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import fr.m2i.models.Event;
+import fr.m2i.models.Planning;
 import fr.m2i.models.User;
 
 @Path("/user")
@@ -95,4 +97,24 @@ public class UserApi {
 	}
 	
 	
+	// Récupération de tous les events d'un utilisateur
+	@GET
+	@Path("/{id}/events")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Event> findAllEventsByUser(@PathParam("id") int id) {
+		
+		factory = Persistence.createEntityManagerFactory("UnityPersist");
+		em = factory.createEntityManager();
+		
+		Query q = em.createNamedQuery("selectPlanningByUserId", Planning.class);
+		q.setParameter("id", id);
+		
+		@SuppressWarnings("unchecked")
+		Planning planningUser = (Planning) q.getSingleResult();
+		List<Event> events = planningUser.getEvents();
+			
+		factory.close();
+			
+		return events;
+	}
 }
