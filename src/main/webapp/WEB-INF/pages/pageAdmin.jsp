@@ -50,14 +50,14 @@
 		          	<h1>Nouvel utilisateur</h1>
 		          	<a href="#modal-close" title="Close" class="modal-close"> X </a>
 		            <div class="créationUser">
-						<form action="pageadmin?req=new" method="POST">
+						<form action="pageadmin?req=new" method="POST" id="creationUser">
 							<label>Nom:</label>
 								<input type="text" id="last_name" placeholder="Nom" name="last_name" required><br>
 							<label>Prénom:</label>
 								<input type="text" id="first_name" placeholder="Prénom" name="first_name" required><br>
 							<label>Ville:</label>
 								<input type="text" id="city" placeholder="Ville" name="city" placeholder="Lyon" required><br>
-							<label>Date d'anniversaire:</label>
+							<label>Anniversaire:</label>
 								<input type="date" id="birthday_date" name="birthday_date" required><br>
 							<label>Téléphone:</label>
 								<input type="tel" id="phone_number" placeholder="01-23-45-67-89" name="phone_number" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" required><br>
