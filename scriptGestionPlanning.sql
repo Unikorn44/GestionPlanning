@@ -164,13 +164,14 @@ INSERT INTO eventTable (title, date_event, start_time, end_time, description)
  VALUES
  ('Présentation fil rouge', '2022-09-09', '09:00:00', '17:00:00', 'Présentation projet fil rouge'),
  ('Vacances', '2022-08-23', '08:30:00', '09:00:00', 'Fin des vacances'),
- ('Finish', '2022-10-15', '16:30:00', '17:00:00', 'Fin de formation'),
+ ('Finish', '2022-09-15', '16:30:00', '17:00:00', 'Fin de formation'),
  ('Spring Security', '2022-09-06', '8:30:00', '17:00:00', 'Apprentissage de Spring Security'),
  ('Présentation blanc', '2022-09-07', '8:30:00', '17:00:00', 'On montre a Freddy'),
  ('Présentation Cap Gemini', '2022-09-09', '15:00:00', '17:00:00', 'On montre a Cap G'),
  ('Travail', '2022-09-19', '15:00:00', '17:00:00', 'Début du travail à Infotel'),
  ('Concert', '2022-09-09', '20:00:00', '23:00:00', 'Concert a l opera'),
- ('Travail', '2022-09-19', '15:00:00', '17:00:00', 'Début du travail à Capgemini');
+ ('Travail', '2022-09-19', '15:00:00', '17:00:00', 'Début du travail à Capgemini'),
+ ('Journée plage', '2022-10-16', '12:00:00', '20:00:00', 'Avec les copains');
  
 -- création de 9 planning event
 INSERT INTO planning_eventTable (id_event, id_planning)
@@ -195,5 +196,6 @@ INSERT INTO planning_eventTable (id_event, id_planning)
  (8, 3),
  (8, 9),
  (9, 2),
- (9, 4);
+ (9, 4),
+ (10, 1);
  
