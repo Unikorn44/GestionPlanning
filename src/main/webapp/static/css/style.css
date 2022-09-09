@@ -1,5 +1,15 @@
 @charset "ISO-8859-1";
 
+form#creationUser label { display:inline-block; width:100px }
+form#creationUser input { display:inline-block }
+form#creationUser input[type=submit] {
+	color:#fff;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .btn-success{
 	height :5vh;
 }
