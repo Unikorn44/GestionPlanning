@@ -13,7 +13,7 @@ public final class KeySingleton {
 	private KeySingleton() {
 	}
 	
-	// Création key
+	// Creation key
     public static ECKey getKey() {
         if (key == null) {
             try {

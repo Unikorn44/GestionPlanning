@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.m2i.service.TokenService;
 
-@WebFilter("/api/user/*")
+@WebFilter({"/api/user/*", "/api/event/*"})
 public class AuthFilter implements Filter {
 	
 	private TokenService tokenService;
@@ -34,14 +34,19 @@ public class AuthFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		Enumeration<String> headerNames = httpRequest.getHeaderNames();
 		
+		System.out.println("FiltreIci");
+		
 		String headerName="";
 		if (headerNames != null) {
 			while (headerNames.hasMoreElements()) {
 				headerName=headerNames.nextElement();
 				String headerValue = httpRequest.getHeader(headerName);
+				System.out.println("headerNames " + headerValue);
 				if(headerName.equals("authorization")) {
+					System.out.println("ifToken");
 					String tokenBaerer = headerValue;
 					String token = tokenBaerer.substring(tokenBaerer.indexOf(" ") + 1);
+					System.out.println("tokenBearer");
 					if(tokenService.isValid(token)) {
 						System.out.println("token valid");
 						chain.doFilter(request, response);						

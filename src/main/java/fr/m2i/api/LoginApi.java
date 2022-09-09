@@ -1,5 +1,7 @@
 package fr.m2i.api;
 
+import java.nio.charset.StandardCharsets;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -12,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.DigestUtils;
 
 import fr.m2i.models.Login;
 import fr.m2i.models.User;
@@ -32,7 +35,8 @@ public class LoginApi {
 			
 		// Authentifier user avec login et password
 		Login log;
-		log = authenticate(login, password);
+		String cryptPassword = create(password);
+		log = authenticate(login, cryptPassword);
 		User user = log.getUser();
 		// Emet un token pour l'user
 		this.tokenService = new TokenService();
@@ -56,15 +60,24 @@ public class LoginApi {
 	 private Login authenticate(String login, String password) {
 		 factory = Persistence.createEntityManagerFactory("UnityPersist");
 		 em = factory.createEntityManager();
-		 
+		 		 
 		 TypedQuery<Login> query = em.createNamedQuery("findByloginpassword", Login.class);
 	     	query.setParameter("login", login);
 	     	query.setParameter("password", password);
 	     Login logFound = query.getSingleResult();
-
+	     
 	     factory.close();
 	     em.close();
 	     
 	     return logFound;
 	 }
+	 
+	 private String create(String password) {
+		byte[] data = password.getBytes(StandardCharsets.UTF_8);
+		String result = DigestUtils.md5DigestAsHex(data);
+		
+		System.out.println("resultat: " + result);
+		
+		return result;
+	}
 }

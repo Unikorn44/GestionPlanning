@@ -1,15 +1,21 @@
 package fr.m2i.api;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.m2i.models.Event;
+import fr.m2i.models.Planning;
 import fr.m2i.models.Planning_event;
+import fr.m2i.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,44 +45,40 @@ public class EventApi {
 			
 		return events;
 	}
-	
-	// Récupération de tous les events d'un utilisateur
-		@GET
-		@Path("/user/{id}")
-		@Produces(MediaType.APPLICATION_JSON)
-		public List<Event> findAllEventsByUser(@PathParam("id") int id) {
-			
-			factory = Persistence.createEntityManagerFactory("UnityPersist");
-			em = factory.createEntityManager();
-			
-			Query q = em.createNamedQuery("selectEventsByUserId", Event.class);
-			q.setParameter("id", id);
-			
-			System.out.println("===== ID ===== " + id);
-			
-			@SuppressWarnings("unchecked")
-			List<Event> events = q.getResultList();
+		
+	// Ajout d'un nouvel event
+	@POST
+	@Path("/create/{userId}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void createEvent(@PathParam("userId") int id, Event event)
+	{
+		System.out.println("je suis dans le create Event");
+		
+		factory = Persistence.createEntityManagerFactory("UnityPersist");
+		em = factory.createEntityManager();
+		
+		em.getTransaction().begin();
+		
+		Query q = em.createNamedQuery("selectPlanningByUserId", Planning.class);
+		q.setParameter("id", id);
+		Planning userPlanning = (Planning) q.getSingleResult();
+		ArrayList<Planning> arrayPlanning = new ArrayList<Planning>();
+		
+		arrayPlanning.add(userPlanning);
+		
+		Event newEvent = new Event(
+			event.getTitle(),
+			event.getDate_event(),
+			event.getStart_time(),
+			event.getEnd_time(),
+			event.getDescription(),
+			arrayPlanning
+		);
+		
+		em.persist(newEvent);
 				
-			factory.close();
-				
-			return events;
-		}
-		// Récupération de tous les events d'un utilisateur
-				@GET
-				@Path("/pe")
-				@Produces(MediaType.APPLICATION_JSON)
-				public List<Planning_event> findAllPlanningEvents() {
-					
-					factory = Persistence.createEntityManagerFactory("UnityPersist");
-					em = factory.createEntityManager();
-					
-					Query q = em.createNamedQuery("selectAllPlanningEvents", Planning_event.class);
-					
-					@SuppressWarnings("unchecked")
-					List<Planning_event> pevents = q.getResultList();
-						
-					factory.close();
-						
-					return pevents;
-				}
+		em.getTransaction().commit();
+		em.close();
+		factory.close();
+	}
 }
