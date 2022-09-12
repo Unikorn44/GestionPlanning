@@ -13,6 +13,7 @@ import javax.servlet.http.HttpFilter;
 /**
  * Servlet Filter implementation class ExempleFilter
  */
+@SuppressWarnings("serial")
 @WebFilter("/ExempleFilter")
 public class ExempleFilter extends HttpFilter implements Filter {
        

@@ -122,6 +122,7 @@ public class User {
 		this.email = email;
 	
 	}
+
 	
 	public Planning getPlanning() {
 		return planning;
