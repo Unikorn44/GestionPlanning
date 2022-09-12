@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="jpa:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0d14713b-6d87-42d0-acb5-8558fa5c6912" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/src/main/java/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/m2i/api/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/m2i/api/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/m2i/filters/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/m2i/filters/AuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/m2i/service/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/m2i/service/TokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/api/LoginApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/api/LoginApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/api/UserApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/api/UserApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/api/WelcomeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/filters/AuthFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/filters/AuthFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/filters/ExempleFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/jwt/filter/JWTTokenNeeded.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/jwt/filter/JWTTokenNeededFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/jwt/rest/EchoEndpoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/jwt/rest/UserEndpoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Actor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Commande.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Contact.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Contact.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/List_user.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/List_user.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Planning.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Planning.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Planning_event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Planning_event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/Todo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/models/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/service/KeySingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/service/KeySingleton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/service/TokenService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/service/TokenService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/servlets/TodoServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/servlets/Welcome.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/servlets/Welcome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/classes/fr/m2i/servlets/WelcomeServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/lib/commons-codec-1.11.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/lib/java-jwt-3.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/lib/jjwt-api-0.11.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/lib/jjwt-impl-0.11.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/lib/jjwt-jackson-0.11.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Jpa/WEB-INF/pages/todo.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/api/LoginApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/api/LoginApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/api/UserApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/api/UserApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/filters/AuthFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/filters/AuthFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/models/Contact.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/models/Contact.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/models/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/models/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/models/List_user.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/models/List_user.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/models/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/models/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/models/Planning.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/models/Planning.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/models/Planning_event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/models/Planning_event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/models/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/service/KeySingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/service/KeySingleton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/service/TokenService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/service/TokenService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fr/m2i/servlets/Welcome.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fr/m2i/servlets/Welcome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/fr.m2i/jpa/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/fr.m2i/jpa/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-fr.m2i.test.jwt.EchoEndpointTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/fr.m2i.test.jwt.EchoEndpointTest.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2ELko9YEpWYpLwReD0ad6G7sOv1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/charlottemarion/code/Charlotte6944/workspace-spring-tool-suite-4-4.15.1.RELEASE/ProjetFilRouge/GestionPlanning",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable",
+    "spring.configuration.checksum": "f0b4a299c45171493ae3215d69d9b0a6"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Tomcat 9.0.65" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.65" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="jpa:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/jpa_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="2ba9b7ee-93c8-43f4-b4c1-22a86d5b885a" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="62147" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="jpa:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0d14713b-6d87-42d0-acb5-8558fa5c6912" name="Changes" comment="" />
+      <created>1662382424380</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662382424380</updated>
+      <workItem from="1662382425580" duration="853000" />
+      <workItem from="1662383439717" duration="423000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
