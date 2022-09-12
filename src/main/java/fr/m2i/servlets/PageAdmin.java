@@ -150,14 +150,20 @@ public class PageAdmin extends HttpServlet {
 			q.setParameter("id", userId);		
 			User user2bSuppressed = (User) q.getSingleResult();			
 			
+			//récupération planning de user
 			Integer planningId =  user2bSuppressed.getPlanning().getId();
-			//Query qp =  em2.createNamedQuery("selectPlanningById", Planning.class);
-			//qp.setParameter("id", planningId);	
-			//Planning planning2Bdeleted = (Planning) qp.getSingleResult();
-					
+			Query qp =  em2.createNamedQuery("selectPlanningById", Planning.class);
+			qp.setParameter("id", planningId);	
+			Planning planning2Bdeleted = (Planning) qp.getSingleResult();
+			
+			//récupération login de user
+			Query qp2 =  em2.createNamedQuery("findLoginByUserId", Login.class);
+			qp2.setParameter("id", userId);	
+			Login login2Bdeleted = (Login) qp2.getSingleResult();		
+			
+			em2.remove(login2Bdeleted);
+			em2.remove(planning2Bdeleted);			
 			em2.remove(user2bSuppressed);
-			//em2.remove(planning2Bdeleted);
-			em2.createNamedQuery("deleteNatifTest").setParameter("id", planningId).executeUpdate();					
 		}
 		
 		//Commit des operations

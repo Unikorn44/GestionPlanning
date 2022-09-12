@@ -89,6 +89,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Contact> Contact;
 
+	
 	public Planning getPlanning() {
 		return planning;
 	}
