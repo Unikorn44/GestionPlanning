@@ -17,13 +17,11 @@ import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -71,6 +69,19 @@ public class Planning {
 	@JsonBackReference
     private User user;
 
+	
+	//Constructeurs
+	public Planning() {
+		
+	}
+	
+	public Planning(boolean export, boolean acces, boolean modification) {
+		this.export = export;
+		this.acces = acces;
+		this.modification = modification;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -111,4 +122,6 @@ public class Planning {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
 }

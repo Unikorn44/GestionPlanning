@@ -89,6 +89,40 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Contact> Contact;
 
+	//constructeurs
+	public User() {	
+	}
+
+	public User(int id, String first_name, String last_name, String city, Date birthday_date, String phone_number,
+			String email, boolean admin, String picture, boolean compte_actif, Planning planning,
+			List<List_user> listUsers, List<fr.m2i.models.Contact> contact) {
+		this.id = id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.city = city;
+		this.birthday_date = birthday_date;
+		this.phone_number = phone_number;
+		this.email = email;
+		this.admin = admin;
+		this.picture = picture;
+		this.compte_actif = compte_actif;
+		this.planning = planning;
+		this.listUsers = listUsers;
+		Contact = contact;
+	}
+	
+	public User(String first_name, String last_name, String city, Date birthday_date, String phone_number,
+			String email, boolean compte_actif,  boolean admin) {
+		
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.city = city;
+		this.birthday_date = birthday_date;
+		this.phone_number = phone_number;
+		this.email = email;
+	
+	}
+	
 	public Planning getPlanning() {
 		return planning;
 	}
@@ -167,26 +201,6 @@ public class User {
 		this.compte_actif = compte_actif;
 	}
 	
-	//constructeurs
-	public User() {	
-	}
 
-	public User(int id, String first_name, String last_name, String city, Date birthday_date, String phone_number,
-			String email, boolean admin, String picture, boolean compte_actif, Planning planning,
-			List<List_user> listUsers, List<fr.m2i.models.Contact> contact) {
-		this.id = id;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.city = city;
-		this.birthday_date = birthday_date;
-		this.phone_number = phone_number;
-		this.email = email;
-		this.admin = admin;
-		this.picture = picture;
-		this.compte_actif = compte_actif;
-		this.planning = planning;
-		this.listUsers = listUsers;
-		Contact = contact;
-	}
 	
 }

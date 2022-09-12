@@ -2,19 +2,11 @@ package fr.m2i.models;
 
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 //@Entity
@@ -36,7 +28,12 @@ public class Planning_event {
 	@ManyToOne
 	@JoinColumn(name="id_planning")
 	private Planning planning;
-
+	
+	public Planning_event(Event event, Planning planning) {
+		this.event = event;
+		this.planning = planning;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -65,9 +62,5 @@ public class Planning_event {
 	public Planning_event() {
 		
 	}
-	
-	public Planning_event(Event event, Planning planning) {
-		this.event = event;
-		this.planning = planning;
-	}
+
 }

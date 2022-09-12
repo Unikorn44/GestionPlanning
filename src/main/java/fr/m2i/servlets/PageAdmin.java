@@ -74,7 +74,6 @@ public class PageAdmin extends HttpServlet {
 			Date birthday_date = null;
 			try {
 				birthday_date = (Date) formatter.parse(request.getParameter("birthday_date"));
-
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}	
@@ -82,38 +81,18 @@ public class PageAdmin extends HttpServlet {
 			String phone_number = request.getParameter("phone_number");
 			String email = request.getParameter("email");
 
-			//Creation new user
-			User user2Create = new User();
+			//création new User
+			User user2Create = createUser(first_name, last_name, city, birthday_date, phone_number, email); 
 			
-			user2Create.setFirst_name(first_name);
-			user2Create.setLast_name(last_name);
-			user2Create.setCity(city);
-			user2Create.setBirthday_date(birthday_date);
-			user2Create.setPhone_number(phone_number);
-			user2Create.setEmail(email);
+			//Création login
+			Login login2create = createLogin(user2Create);
 			
-			user2Create.setCompte_actif(false);
-			user2Create.setAdmin(false);
-			
-			// Creation login
-			Login login2create = new Login();
-			login2create.setLogin(user2Create.getFirst_name());
-			String password = createPassword(user2Create);
-			String sha = create(password);
-			login2create.setPassword(sha);
-			login2create.setUser(user2Create);
-			
-			// Creation planning user
-			Planning planning2Create = new Planning();
-			planning2Create.setExport(false);
-			planning2Create.setAcces(false);
-			planning2Create.setModification(false);
-			
+			//Creation planning user
+			Planning planning2Create = createPlanning();
+						
 			em2.persist(login2create);
-			em2.persist(planning2Create);
-			
+			em2.persist(planning2Create);			
 			user2Create.setPlanning(planning2Create);
-
 			em2.persist(user2Create);	
 		}
 		
@@ -134,11 +113,8 @@ public class PageAdmin extends HttpServlet {
 			User user2bModified = (User) q.getSingleResult();
 			
 			//Modification des parametres utilisateur
-			user2bModified.setCompte_actif(compteActif);
-			user2bModified.setAdmin(adminStatus);
-			user2bModified.getPlanning().setExport(autorExportPlanningStatus);
-			user2bModified.getPlanning().setAcces(autorAccesPlanningParExt);
-			user2bModified.getPlanning().setModification(autorModifPlanningParCollab);
+			modifParamUser (user2bModified, compteActif, adminStatus, autorExportPlanningStatus,
+					autorAccesPlanningParExt, autorModifPlanningParCollab);				
 		}
 		
 		//suppression utilisateur
@@ -148,9 +124,10 @@ public class PageAdmin extends HttpServlet {
 			Integer userId = Integer.parseInt(request.getParameter("userId"));			
 			Query q = em2.createNamedQuery("selectUserById", User.class);
 			q.setParameter("id", userId);		
-			User user2bSuppressed = (User) q.getSingleResult();			
 			
+			User user2bSuppressed = (User) q.getSingleResult();			
 			Integer planningId =  user2bSuppressed.getPlanning().getId();
+			
 			//Query qp =  em2.createNamedQuery("selectPlanningById", Planning.class);
 			//qp.setParameter("id", planningId);	
 			//Planning planning2Bdeleted = (Planning) qp.getSingleResult();
@@ -168,7 +145,8 @@ public class PageAdmin extends HttpServlet {
 		response.sendRedirect("/Jpa/pageadmin");
 	}
 	
-	private String createPassword(User user) {
+	//Password creation
+	public String createPassword(User user) {
 		
 		int chiffre1 = (int) (Math.random() * 10);
 		int chiffre2 = (int) (Math.random() * 10);
@@ -188,8 +166,52 @@ public class PageAdmin extends HttpServlet {
 	
 	private String create(String password) {
 		byte[] data = password.getBytes(StandardCharsets.UTF_8);
-		String result = DigestUtils.md5DigestAsHex(data);
-		
+		String result = DigestUtils.md5DigestAsHex(data);		
 		return result;
 	}
+	
+	//Creation new user
+	public User createUser(String first_name, String last_name, String city, Date birthday_date, 
+			String phone_number, String email) {
+		
+		User user2Create = new User(first_name, last_name, city, birthday_date, phone_number,
+				email, false, false);
+		
+		return user2Create;
+	}
+	
+	// Creation login
+	public Login createLogin(User user2Create){
+		
+		Login login2create = new Login();
+		login2create.setLogin(user2Create.getFirst_name());
+		String password = createPassword(user2Create);
+		String sha = create(password);
+		login2create.setPassword(sha);
+		login2create.setUser(user2Create);
+		
+		return login2create;
+	}
+	
+	// Creation planning user
+	public Planning createPlanning() {
+		
+		Planning planning2Create = new Planning(false, false, false);		
+		return planning2Create;
+	}
+	
+	//Modification des parametres utilisateur
+	public void modifParamUser (User user2bModified, boolean compteActif,
+			boolean adminStatus, boolean autorExportPlanningStatus, 
+			boolean autorAccesPlanningParExt, boolean autorModifPlanningParCollab) 
+	{
+		user2bModified.setCompte_actif(compteActif);
+		user2bModified.setAdmin(adminStatus);
+		user2bModified.getPlanning().setExport(autorExportPlanningStatus);
+		user2bModified.getPlanning().setAcces(autorAccesPlanningParExt);
+		user2bModified.getPlanning().setModification(autorModifPlanningParCollab);
+	}
+	
+	
+	
 }

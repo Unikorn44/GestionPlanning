@@ -16,12 +16,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name="Event")
 @Table(name="eventTable")
@@ -71,6 +68,17 @@ public class Event {
 		inverseJoinColumns=@JoinColumn(name="id_planning"))
 	@JsonIgnore
 	private List<Planning> plannings;
+	
+	//constructeur
+	public Event(String title, Date date_event, Time start_time, Time end_time, String description, List<Planning> plannings) {
+		this.title = title;
+		this.date_event = date_event;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.description = description;
+		this.plannings = plannings;
+	}
+
 	
 	public List<Planning> getPlannings() {
 		return plannings;
@@ -130,14 +138,5 @@ public class Event {
 	
 	public Event() {
 	}
-	
-	public Event(String title, Date date_event, Time start_time, Time end_time, String description, List<Planning> plannings) {
-		this.title = title;
-		this.date_event = date_event;
-		this.start_time = start_time;
-		this.end_time = end_time;
-		this.description = description;
-		this.plannings = plannings;
-	}
-	
+		
 }
